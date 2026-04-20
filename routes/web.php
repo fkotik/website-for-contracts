@@ -21,4 +21,9 @@ Route::post('/add_vat_rate', action: [App\Http\Controllers\WebController::class,
 Route::post('/edit_vat_rate', action: [App\Http\Controllers\WebController::class, 'edit_vat_rate'])->name('edit_vat_rate');
 Route::delete('/del_vat_rate', action: [App\Http\Controllers\WebController::class, 'del_vat_rate'])->name('del_vat_rate');
 
+Route::get('/stages_of_execution', action: [App\Http\Controllers\WebController::class, 'stages_of_execution'])->name('stages_of_execution');
+
+Route::post('/add_stage_of_execution', action: [App\Http\Controllers\WebController::class, 'add_stage_of_execution'])->name('add_stage_of_execution');
+Route::post('/edit_stage_of_execution', action: [App\Http\Controllers\WebController::class, 'edit_stage_of_execution'])->name('edit_stage_of_execution');
+Route::delete('/del_stage_of_execution', action: [App\Http\Controllers\WebController::class, 'del_stage_of_execution'])->name('del_stage_of_execution');
 

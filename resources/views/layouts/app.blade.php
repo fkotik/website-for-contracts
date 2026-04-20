@@ -34,6 +34,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('vat_rates') }}">Ставки НДС</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('stages_of_execution') }}">Стадии исполнения</a>
+                    </li>
+
                 </ul>
 
                 <!-- Right Side Of Navbar -->

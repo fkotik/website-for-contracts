@@ -6,7 +6,7 @@
 
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header d-flex" style="align-items: center">{{ __('Таблица "Ставки НДС"') }}
+                    <div class="card-header d-flex" style="align-items: center">{{ __('Таблица "Стадии исполнения"') }}
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal"
                                 style="margin-left: auto;">Добавить
                         </button>
@@ -17,28 +17,30 @@
                             <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Процент</th>
+                                <th scope="col">Название стадии</th>
 
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($all as $record)
                                 <tr>
-                                    <th scope="row">{{$record->id_vat_rate}}</th>
+                                    <th scope="row">{{$record->id_stage_of_execution}}</th>
                                     <td class="d-flex" style="align-items: center">
-                                        <p>{{$record->percent}}</p>
+                                        <p>{{$record->name}}</p>
 
                                         <div class="d-flex" style="margin-left: auto;">
-                                            <button onclick="document.getElementById('id_vat_rateDel').value={{$record->id_vat_rate}};" data-bs-toggle="modal" data-bs-target="#delModal" type="button"
-                                                    class="btn btn-danger" style="margin-right: 10px;">
+                                            <button
+                                                onclick="document.getElementById('id_stage_of_executionDel').value={{$record->id_stage_of_execution}};"
+                                                data-bs-toggle="modal" data-bs-target="#delModal" type="button"
+                                                class="btn btn-danger" style="margin-right: 10px;">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                      fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
                                                     <path
                                                         d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"></path>
                                                 </svg>
                                             </button>
-                                            <button onclick="document.getElementById('id_vat_rateEdit').value={{$record->id_vat_rate}};
-                                                document.getElementById('percentEdit').value={{$record->percent}};
+                                            <button onclick="document.getElementById('id_stage_of_executionEdit').value={{$record->id_stage_of_execution}};
+                                                document.getElementById('nameEdit').value='{{$record->name}}';
                                                 " data-bs-toggle="modal" data-bs-target="#editModal" type="button"
                                                     class="btn btn-warning">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -59,7 +61,7 @@
             <!-- ModalAdd -->
             <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
-                    <form class="modal-content" action="{{route('add_vat_rate')}}" method="post">
+                    <form class="modal-content" action="{{route('add_stage_of_execution')}}" method="post">
                         @csrf
                         <div class="modal-header">
                             <h1 class="modal-title fs-5" id="exampleModalLabel">Добавление записи в таблицу</h1>
@@ -67,9 +69,8 @@
                         </div>
                         <div class="modal-body">
                             <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Введите процент</label>
-                                <input step="0.01" type="number" class="form-control" id="percent" name="percent"
-                                       placeholder="0.00">
+                                <label for="exampleFormControlInput1" class="form-label">Введите название стадии</label>
+                                <input type="text" class="form-control" id="name" name="name">
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -83,7 +84,7 @@
             <!-- ModalEdit -->
             <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
-                    <form class="modal-content" action="{{route('edit_vat_rate')}}" method="post">
+                    <form class="modal-content" action="{{route('edit_stage_of_execution')}}" method="post">
                         @csrf
                         <div class="modal-header">
                             <h1 class="modal-title fs-5" id="exampleModalLabel">Редактирование записи в таблице</h1>
@@ -91,9 +92,9 @@
                         </div>
                         <div class="modal-body">
                             <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Введите процент</label>
-                                <input type="text" id="id_vat_rateEdit" name="id_vat_rate" hidden>
-                                <input step="0.01" type="number" required class="form-control" id="percentEdit" name="percent">
+                                <label for="exampleFormControlInput1" class="form-label">Введите название</label>
+                                <input type="text" id="id_stage_of_executionEdit" name="id_stage_of_execution" hidden>
+                                <input type="text" class="form-control" id="nameEdit" name="name" required >
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -107,7 +108,7 @@
             <!-- ModalDel -->
             <div class="modal fade" id="delModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
-                    <form class="modal-content" action="{{route('del_vat_rate')}}" method="post">
+                    <form class="modal-content" action="{{route('del_stage_of_execution')}}" method="post">
                         @csrf
                         @method('DELETE')
                         <div class="modal-header">
@@ -116,8 +117,9 @@
                         </div>
                         <div class="modal-body">
                             <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Вы точно хотите удалить запись?</label>
-                                <input type="text" id="id_vat_rateDel" name="id_vat_rate" hidden>
+                                <label for="exampleFormControlInput1" class="form-label">Вы точно хотите удалить
+                                    запись?</label>
+                                <input type="text" id="id_stage_of_executionDel" name="id_stage_of_execution" hidden>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -131,7 +133,7 @@
             <!-- Тосты в правом нижнем углу -->
             @if(session('message') !== null)
                 <div class="toast-container position-fixed bottom-0 end-0 p-3">
-                    <div id="successToast" class="toast show" role="alert">
+                    <div id="successToast" class="toast show" role="alert" data-bs-autohide="true" data-bs-delay="10000">
                         <div class="toast-header bg-success text-white">
                             <strong class="me-auto">Успешно</strong>
                             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
