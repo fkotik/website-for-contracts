@@ -27,3 +27,8 @@ Route::post('/add_stage_of_execution', action: [App\Http\Controllers\WebControll
 Route::post('/edit_stage_of_execution', action: [App\Http\Controllers\WebController::class, 'edit_stage_of_execution'])->name('edit_stage_of_execution');
 Route::delete('/del_stage_of_execution', action: [App\Http\Controllers\WebController::class, 'del_stage_of_execution'])->name('del_stage_of_execution');
 
+Route::get('/types_of_contracts', action: [App\Http\Controllers\WebController::class, 'types_of_contracts'])->name('types_of_contracts');
+
+Route::post('/add_type_of_contract', action: [App\Http\Controllers\WebController::class, 'add_type_of_contract'])->name('add_type_of_contract');
+Route::post('/edit_type_of_contract', action: [App\Http\Controllers\WebController::class, 'edit_type_of_contract'])->name('edit_type_of_contract');
+Route::delete('/del_type_of_contract', action: [App\Http\Controllers\WebController::class, 'del_type_of_contract'])->name('del_type_of_contract');

@@ -53,4 +53,25 @@ class WebController extends Controller
         DB::table("stages_of_execution")->where('id_stage_of_execution',$request->id_stage_of_execution)->delete();
         return redirect()->back()->with('message','Запись удалена');
     }
+    public function types_of_contracts()
+    {
+        $all = DB::table("types_of_contracts")->orderBy('id_type_of_contract')->get();
+        return view('types_of_contracts',compact('all'));
+    }
+    public function add_type_of_contract(Request $request){
+        DB::table("types_of_contracts")->insert([
+            'name'=>$request->name,
+        ]);
+        return redirect()->back()->with('message','Запись добавлена');
+    }
+    public function edit_type_of_contract(Request $request){
+        DB::table("types_of_contracts")->where('id_type_of_contract',$request->id_type_of_contract)->update([
+            'name'=>$request->name,
+        ]);
+        return redirect()->back()->with('message','Запись изменена');
+    }
+    public function del_type_of_contract(Request $request){
+        DB::table("types_of_contracts")->where('id_type_of_contract',$request->id_type_of_contract)->delete();
+        return redirect()->back()->with('message','Запись удалена');
+    }
 }
