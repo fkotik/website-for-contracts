@@ -74,4 +74,26 @@ class WebController extends Controller
         DB::table("types_of_contracts")->where('id_type_of_contract',$request->id_type_of_contract)->delete();
         return redirect()->back()->with('message','Запись удалена');
     }
+    public function types_of_payments()
+    {
+        $all = DB::table("types_of_payments")->orderBy('id_type_of_payment')->get();
+        return view('types_of_payments',compact('all'));
+    }
+    public function add_type_of_payment(Request $request){
+        DB::table("types_of_payments")->insert([
+            'name'=>$request->name,
+        ]);
+        return redirect()->back()->with('message','Запись добавлена');
+    }
+    public function edit_type_of_payment(Request $request){
+        DB::table("types_of_payments")->where('id_type_of_payment',$request->id_type_of_payment)->update([
+            'name'=>$request->name,
+        ]);
+        return redirect()->back()->with('message','Запись изменена');
+    }
+    public function del_type_of_payment(Request $request){
+        DB::table("types_of_payments")->where('id_type_of_payment',$request->id_type_of_payment)->delete();
+        return redirect()->back()->with('message','Запись удалена');
+    }
+
 }

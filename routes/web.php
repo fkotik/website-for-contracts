@@ -32,3 +32,9 @@ Route::get('/types_of_contracts', action: [App\Http\Controllers\WebController::c
 Route::post('/add_type_of_contract', action: [App\Http\Controllers\WebController::class, 'add_type_of_contract'])->name('add_type_of_contract');
 Route::post('/edit_type_of_contract', action: [App\Http\Controllers\WebController::class, 'edit_type_of_contract'])->name('edit_type_of_contract');
 Route::delete('/del_type_of_contract', action: [App\Http\Controllers\WebController::class, 'del_type_of_contract'])->name('del_type_of_contract');
+
+Route::get('/types_of_payments', action: [App\Http\Controllers\WebController::class, 'types_of_payments'])->name('types_of_payments');
+
+Route::post('/add_type_of_payment', action: [App\Http\Controllers\WebController::class, 'add_type_of_payment'])->name('add_type_of_payment');
+Route::post('/edit_type_of_payment', action: [App\Http\Controllers\WebController::class, 'edit_type_of_payment'])->name('edit_type_of_payment');
+Route::delete('/del_type_of_payment', action: [App\Http\Controllers\WebController::class, 'del_type_of_payment'])->name('del_type_of_payment');

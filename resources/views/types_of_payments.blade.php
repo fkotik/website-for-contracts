@@ -6,7 +6,7 @@
 
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header d-flex" style="align-items: center">{{ __('Таблица "Типы контрактов"') }}
+                    <div class="card-header d-flex" style="align-items: center">{{ __('Таблица "Типы оплат"') }}
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal"
                                 style="margin-left: auto;">Добавить
                         </button>
@@ -24,13 +24,13 @@
                             <tbody>
                             @foreach($all as $record)
                                 <tr>
-                                    <th scope="row">{{$record->id_type_of_contract}}</th>
+                                    <th scope="row">{{$record->id_type_of_payment}}</th>
                                     <td class="d-flex" style="align-items: center">
                                         <p>{{$record->name}}</p>
 
                                         <div class="d-flex" style="margin-left: auto;">
                                             <button
-                                                onclick="document.getElementById('id_type_of_contractDel').value={{$record->id_type_of_contract}};"
+                                                onclick="document.getElementById('id_type_of_paymentDel').value={{$record->id_type_of_payment}};"
                                                 data-bs-toggle="modal" data-bs-target="#delModal" type="button"
                                                 class="btn btn-danger" style="margin-right: 10px;">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -39,7 +39,7 @@
                                                         d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"></path>
                                                 </svg>
                                             </button>
-                                            <button onclick="document.getElementById('id_type_of_contractEdit').value={{$record->id_type_of_contract}};
+                                            <button onclick="document.getElementById('id_type_of_paymentEdit').value={{$record->id_type_of_payment}};
                                                 document.getElementById('nameEdit').value='{{$record->name}}';
                                                 " data-bs-toggle="modal" data-bs-target="#editModal" type="button"
                                                     class="btn btn-warning">
@@ -61,7 +61,7 @@
             <!-- ModalAdd -->
             <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
-                    <form class="modal-content" action="{{route('add_type_of_contract')}}" method="post">
+                    <form class="modal-content" action="{{route('add_type_of_payment')}}" method="post">
                         @csrf
                         <div class="modal-header">
                             <h1 class="modal-title fs-5" id="exampleModalLabel">Добавление записи в таблицу</h1>
@@ -84,7 +84,7 @@
             <!-- ModalEdit -->
             <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
-                    <form class="modal-content" action="{{route('edit_type_of_contract')}}" method="post">
+                    <form class="modal-content" action="{{route('edit_type_of_payment')}}" method="post">
                         @csrf
                         <div class="modal-header">
                             <h1 class="modal-title fs-5" id="exampleModalLabel">Редактирование записи в таблице</h1>
@@ -93,7 +93,7 @@
                         <div class="modal-body">
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Введите название</label>
-                                <input type="text" id="id_type_of_contractEdit" name="id_type_of_contract" hidden>
+                                <input type="text" id="id_type_of_paymentEdit" name="id_type_of_payment" hidden>
                                 <input type="text" class="form-control" id="nameEdit" name="name" required >
                             </div>
                         </div>
@@ -108,7 +108,7 @@
             <!-- ModalDel -->
             <div class="modal fade" id="delModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
-                    <form class="modal-content" action="{{route('del_type_of_contract')}}" method="post">
+                    <form class="modal-content" action="{{route('del_type_of_payment')}}" method="post">
                         @csrf
                         @method('DELETE')
                         <div class="modal-header">
@@ -119,7 +119,7 @@
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Вы точно хотите удалить
                                     запись?</label>
-                                <input type="text" id="id_type_of_contractDel" name="id_type_of_contract" hidden>
+                                <input type="text" id="id_type_of_paymentDel" name="id_type_of_payment" hidden>
                             </div>
                         </div>
                         <div class="modal-footer">

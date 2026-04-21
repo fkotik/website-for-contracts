@@ -42,6 +42,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('types_of_contracts') }}">Типы контрактов</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('types_of_payments') }}">Типы оплат</a>
+                    </li>
 
                 </ul>
 
