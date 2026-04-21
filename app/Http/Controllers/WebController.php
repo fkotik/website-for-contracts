@@ -288,4 +288,48 @@ class WebController extends Controller
         DB::table("payment")->where('id_contract', $request->id_contract)->delete();
         return redirect()->back()->with('message', 'Запись удалена');
     }
+    public function stages_of_contracts(Request $request)
+    {
+        $contracts = DB::table("contracts")->get();
+        $stages_of_execution = DB::table("stages_of_execution")->get();
+        $all = DB::table("stages_of_contracts")->orderBy('id_contract')->orderBy('stage_number');
+        $search = '';
+        if (isset($request->search)) {
+            $all = $all->where('id_contract', 'like', '%' . $request->search . '%');
+            $search = $request->search;
+        }
+
+        $all = $all->get();
+        return view('stages_of_contracts', compact('all', 'search', 'stages_of_execution','contracts'));
+    }
+
+    public function add_stage_of_contract(Request $request)
+    {
+        DB::table("stages_of_contracts")->insert([
+            'id_contract' => $request->id_contract,
+            'stage_execution_date' => $request->stage_execution_date,
+            'fk_id_stages_of_execution' => $request->fk_id_stages_of_execution,
+            'stage_amount' => $request->stage_amount,
+            'advance_payment' => $request->advance_payment,
+            'theme' => $request->theme,
+        ]);
+        return redirect()->back()->with('message', 'Запись добавлена');
+    }
+
+    public function edit_stage_of_contract(Request $request)
+    {
+        DB::table("stages_of_contracts")->where('id_contract', $request->id_contract)->where('stage_number',$request->stage_number)->update([
+            'stage_execution_date' => $request->stage_execution_date,
+            'fk_id_stages_of_execution' => $request->fk_id_stages_of_execution,
+            'stage_amount' => $request->stage_amount,
+            'advance_payment' => $request->advance_payment,
+            'theme' => $request->theme,
+        ]);
+        return redirect()->back()->with('message', 'Запись изменена');
+    }
+    public function del_stage_of_contract(Request $request)
+    {
+        DB::table("stages_of_contracts")->where('id_contract', $request->id_contract)->where('stage_number',$request->stage_number)->delete();
+        return redirect()->back()->with('message', 'Запись удалена');
+    }
 }

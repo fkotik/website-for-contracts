@@ -57,6 +57,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('payment') }}">Оплата</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('stages_of_contracts') }}">Стадии договоров</a>
+                    </li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->

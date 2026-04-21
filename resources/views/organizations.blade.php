@@ -16,7 +16,7 @@
                         <form method="GET" action="{{route('organizations')}}">
                             <div class="row">
                                 <div class="col-auto">
-                                    <input type="text" class="form-control" id="search" name="search" placeholder="Поиск названию" value="{{$search}}">
+                                    <input type="text" class="form-control" id="search" name="search" placeholder="Поиск по ID" value="{{$search}}">
                                 </div>
                                 <div class="col-auto">
                                     <button type="submit" class="btn btn-primary mb-3">Поиск</button>
