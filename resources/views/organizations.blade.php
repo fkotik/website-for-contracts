@@ -16,7 +16,7 @@
                         <form method="GET" action="{{route('organizations')}}">
                             <div class="row">
                                 <div class="col-auto">
-                                    <input type="text" class="form-control" id="search" name="search" placeholder="Поиск" value="{{$search}}">
+                                    <input type="text" class="form-control" id="search" name="search" placeholder="Поиск названию" value="{{$search}}">
                                 </div>
                                 <div class="col-auto">
                                     <button type="submit" class="btn btn-primary mb-3">Поиск</button>
@@ -24,33 +24,24 @@
                             </div>
 
                         </form>
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Название</th>
-
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($all as $record)
-                                <tr>
-                                    <th scope="row">{{$record->id_organization}}</th>
-                                    <td class="d-flex" style="align-items: center">
-                                        <p>{{$record->name}}</p>
-
-                                        <div class="d-flex" style="margin-left: auto;">
-                                            <button
-                                                onclick="document.getElementById('id_organizationDel').value={{$record->id_organization}};"
-                                                data-bs-toggle="modal" data-bs-target="#delModal" type="button"
-                                                class="btn btn-danger" style="margin-right: 10px;">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                     fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"></path>
-                                                </svg>
-                                            </button>
-                                            <button onclick="document.getElementById('id_organizationEdit').value={{$record->id_organization}};
+                        @foreach($all as $record)
+                            <ul class="list-group mb-3">
+                                <li class="list-group-item d-flex"><b>ID:</b> {{$record->id_organization}}
+                                    <div class="d-flex" style="margin-left: auto;">
+                                        <a class="btn btn-primary" style="margin-right: 10px" data-bs-toggle="collapse" href="#collapseExample{{$record->id_organization}}" role="button" aria-expanded="false" aria-controls="collapseExample{{$record->id_organization}}">
+                                            Подробнее
+                                        </a>
+                                        <button
+                                            onclick="document.getElementById('id_organizationDel').value={{$record->id_organization}};"
+                                            data-bs-toggle="modal" data-bs-target="#delModal" type="button"
+                                            class="btn btn-danger" style="margin-right: 10px;">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                 fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"></path>
+                                            </svg>
+                                        </button>
+                                        <button onclick="document.getElementById('id_organizationEdit').value={{$record->id_organization}};
                                                 document.getElementById('nameEdit').value='{{$record->name}}';
                                                 document.getElementById('postcodeEdit').value='{{$record->postcode}}';
                                                 document.getElementById('addressEdit').value='{{$record->address}}';
@@ -64,19 +55,34 @@
                                                 document.getElementById('okpoEdit').value='{{$record->okpo}}';
                                                 document.getElementById('bicEdit').value='{{$record->bic}}';
                                                 " data-bs-toggle="modal" data-bs-target="#editModal" type="button"
-                                                    class="btn btn-warning">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                     fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"></path>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
+                                                class="btn btn-warning">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                 fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"></path>
+                                            </svg>
+                                        </button>
+                                    </div>
+
+                                </li>
+                                <li class="list-group-item"><b>Название организации:</b> {{$record->name}}</li>
+                                <div class="collapse" id="collapseExample{{$record->id_organization}}">
+                                    <li class="list-group-item"><b>Почтовый индекс:</b> {{$record->postcode}}</li>
+                                    <li class="list-group-item"><b>Адрес:</b> {{$record->address}}</li>
+                                    <li class="list-group-item"><b>Телефон:</b> {{$record->telephone}}</li>
+                                    <li class="list-group-item"><b>Номер Факса:</b> {{$record->fax_number}}</li>
+                                    <li class="list-group-item"><b>ИНН:</b> {{$record->tin}}</li>
+                                    <li class="list-group-item"><b>Корр. счёт:</b> {{$record->correspondent_account}}</li>
+                                    <li class="list-group-item"><b>Название банка:</b> {{$record->bank}}</li>
+                                    <li class="list-group-item"><b>Рассч. счёт:</b> {{$record->payment_account}}</li>
+                                    <li class="list-group-item"><b>ОКОНХ:</b> {{$record->okonh}}</li>
+                                    <li class="list-group-item"><b>ОКПО:</b> {{$record->okpo}}</li>
+                                    <li class="list-group-item"><b>БИК:</b> {{$record->bic}}</li>
+                                </div>
+                            </ul>
+                        @endforeach
+
+
                     </div>
                 </div>
             </div>
@@ -243,7 +249,7 @@
                         </div>
                         <div class="modal-body">
                             <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Вы точно хотите удалить
+                                <label for="id_organizationDel" class="form-label">Вы точно хотите удалить
                                     запись?</label>
                                 <input type="text" id="id_organizationDel" name="id_organization" hidden>
                             </div>

@@ -51,6 +51,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('organizations') }}">Организации</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('contracts') }}">Договора</a>
+                    </li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->

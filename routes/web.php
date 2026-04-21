@@ -44,3 +44,9 @@ Route::get('/organizations', action: [App\Http\Controllers\WebController::class,
 Route::post('/add_organization', action: [App\Http\Controllers\WebController::class, 'add_organization'])->name('add_organization');
 Route::post('/edit_organization', action: [App\Http\Controllers\WebController::class, 'edit_organization'])->name('edit_organization');
 Route::delete('/del_organization', action: [App\Http\Controllers\WebController::class, 'del_organization'])->name('del_organization');
+
+Route::get('/contracts', action: [App\Http\Controllers\WebController::class, 'contracts'])->name('contracts');
+
+Route::post('/add_contract', action: [App\Http\Controllers\WebController::class, 'add_contract'])->name('add_contract');
+Route::post('/edit_contract', action: [App\Http\Controllers\WebController::class, 'edit_contract'])->name('edit_contract');
+Route::delete('/del_contract', action: [App\Http\Controllers\WebController::class, 'del_contract'])->name('del_contract');

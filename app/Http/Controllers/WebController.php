@@ -180,4 +180,69 @@ class WebController extends Controller
         DB::table("organizations")->where('id_organization', $request->id_organization)->delete();
         return redirect()->back()->with('message', 'Запись удалена');
     }
+
+    public function contracts(Request $request)
+    {
+        $all = DB::table("contracts");
+        $organizations = DB::table("organizations")->get();
+        $types_of_contracts = DB::table("types_of_contracts")->get();
+        $stages_of_execution = DB::table("stages_of_execution")->get();
+        $vat_rates = DB::table("vat_rates")->get();
+        $search = '';
+        $order = 'asc';
+        $filterCustomer = '';
+        if (isset($request->filterCustomer)) {
+            $all = $all->where('fk_id_customer', $request->filterCustomer);
+            $filterCustomer = $request->filterCustomer;
+        }
+        if (isset($request->order)) {
+            $all = $all->orderBy('id_contract', $request->order);
+            $order = $request->order;
+        }
+        if (isset($request->search)) {
+            $all = $all->where('id_contract', 'like', '%' . $request->search . '%');
+            $search = $request->search;
+        }
+
+        $all = $all->get();
+        return view('contracts', compact('all', 'search', 'organizations', 'types_of_contracts', 'stages_of_execution', 'vat_rates', 'order', 'filterCustomer'));
+    }
+
+    public function add_contract(Request $request)
+    {
+        DB::table("contracts")->insert([
+            'date_of_conclusion' => $request->date_of_conclusion,
+            'fk_id_customer' => $request->fk_id_customer,
+            'fk_id_performer' => $request->fk_id_performer,
+            'fk_id_type_of_contract' => $request->fk_id_type_of_contract,
+            'fk_id_stage_of_execution' => $request->fk_id_stage_of_execution,
+            'fk_id_vat_rate' => $request->fk_id_vat_rate,
+            'date_of_execution' => $request->date_of_execution,
+            'theme' => $request->theme,
+            'note' => $request->note,
+        ]);
+        return redirect()->back()->with('message', 'Запись добавлена');
+    }
+
+    public function edit_contract(Request $request)
+    {
+        DB::table("contracts")->where('id_contract', $request->id_contract)->update([
+            'date_of_conclusion' => $request->date_of_conclusion,
+            'fk_id_customer' => $request->fk_id_customer,
+            'fk_id_performer' => $request->fk_id_performer,
+            'fk_id_type_of_contract' => $request->fk_id_type_of_contract,
+            'fk_id_stage_of_execution' => $request->fk_id_stage_of_execution,
+            'fk_id_vat_rate' => $request->fk_id_vat_rate,
+            'date_of_execution' => $request->date_of_execution,
+            'theme' => $request->theme,
+            'note' => $request->note,
+        ]);
+        return redirect()->back()->with('message', 'Запись изменена');
+    }
+
+    public function del_contract(Request $request)
+    {
+        DB::table("contracts")->where('id_contract', $request->id_contract)->delete();
+        return redirect()->back()->with('message', 'Запись удалена');
+    }
 }
