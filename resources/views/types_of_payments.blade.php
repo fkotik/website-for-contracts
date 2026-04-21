@@ -69,7 +69,7 @@
                         </div>
                         <div class="modal-body">
                             <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Введите название стадии</label>
+                                <label for="exampleFormControlInput1" class="form-label">Введите название типа оплаты</label>
                                 <input type="text" class="form-control" id="name" name="name">
                             </div>
                         </div>

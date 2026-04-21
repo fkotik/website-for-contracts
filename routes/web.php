@@ -38,3 +38,9 @@ Route::get('/types_of_payments', action: [App\Http\Controllers\WebController::cl
 Route::post('/add_type_of_payment', action: [App\Http\Controllers\WebController::class, 'add_type_of_payment'])->name('add_type_of_payment');
 Route::post('/edit_type_of_payment', action: [App\Http\Controllers\WebController::class, 'edit_type_of_payment'])->name('edit_type_of_payment');
 Route::delete('/del_type_of_payment', action: [App\Http\Controllers\WebController::class, 'del_type_of_payment'])->name('del_type_of_payment');
+
+Route::get('/organizations', action: [App\Http\Controllers\WebController::class, 'organizations'])->name('organizations');
+
+Route::post('/add_organization', action: [App\Http\Controllers\WebController::class, 'add_organization'])->name('add_organization');
+Route::post('/edit_organization', action: [App\Http\Controllers\WebController::class, 'edit_organization'])->name('edit_organization');
+Route::delete('/del_organization', action: [App\Http\Controllers\WebController::class, 'del_organization'])->name('del_organization');

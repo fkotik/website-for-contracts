@@ -15,6 +15,9 @@
     <link rel="stylesheet" href="{{asset('assets/css/bootstrap.css')}}">
     <script src="{{asset('assets/js/bootstrap.bundle.js')}}"></script>
 
+    <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/mask@3.x.x/dist/cdn.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
     <!-- Scripts -->
 </head>
 <body>
@@ -45,7 +48,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('types_of_payments') }}">Типы оплат</a>
                     </li>
-
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('organizations') }}">Организации</a>
+                    </li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
