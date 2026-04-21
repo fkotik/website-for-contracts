@@ -50,3 +50,9 @@ Route::get('/contracts', action: [App\Http\Controllers\WebController::class, 'co
 Route::post('/add_contract', action: [App\Http\Controllers\WebController::class, 'add_contract'])->name('add_contract');
 Route::post('/edit_contract', action: [App\Http\Controllers\WebController::class, 'edit_contract'])->name('edit_contract');
 Route::delete('/del_contract', action: [App\Http\Controllers\WebController::class, 'del_contract'])->name('del_contract');
+
+Route::get('/payment', action: [App\Http\Controllers\WebController::class, 'payment'])->name('payment');
+
+Route::post('/add_payment', action: [App\Http\Controllers\WebController::class, 'add_payment'])->name('add_payment');
+Route::post('/edit_payment', action: [App\Http\Controllers\WebController::class, 'edit_payment'])->name('edit_payment');
+Route::delete('/del_payment', action: [App\Http\Controllers\WebController::class, 'del_payment'])->name('del_payment');

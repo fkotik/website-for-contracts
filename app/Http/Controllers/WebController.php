@@ -245,4 +245,47 @@ class WebController extends Controller
         DB::table("contracts")->where('id_contract', $request->id_contract)->delete();
         return redirect()->back()->with('message', 'Запись удалена');
     }
+
+    public function payment(Request $request)
+    {
+        $contracts = DB::table("contracts")->get();
+        $types_of_payments = DB::table("types_of_payments")->get();
+        $all = DB::table("payment")->orderBy('id_contract');
+        $search = '';
+        if (isset($request->search)) {
+            $all = $all->where('id_contract', 'like', '%' . $request->search . '%');
+            $search = $request->search;
+        }
+
+        $all = $all->get();
+        return view('payment', compact('all', 'search', 'types_of_payments','contracts'));
+    }
+
+    public function add_payment(Request $request)
+    {
+        DB::table("payment")->insert([
+            'id_contract' => $request->id_contract,
+            'payment_date' => $request->payment_date,
+            'payment_amount' => $request->payment_amount,
+            'fk_id_type_of_payment' => $request->fk_id_type_of_payment,
+            'payment_document_number' => $request->payment_document_number,
+        ]);
+        return redirect()->back()->with('message', 'Запись добавлена');
+    }
+
+    public function edit_payment(Request $request)
+    {
+        DB::table("payment")->where('id_contract', $request->id_contract)->update([
+            'payment_date' => $request->payment_date,
+            'payment_amount' => $request->payment_amount,
+            'fk_id_type_of_payment' => $request->fk_id_type_of_payment,
+            'payment_document_number' => $request->payment_document_number,
+        ]);
+        return redirect()->back()->with('message', 'Запись изменена');
+    }
+    public function del_payment(Request $request)
+    {
+        DB::table("payment")->where('id_contract', $request->id_contract)->delete();
+        return redirect()->back()->with('message', 'Запись удалена');
+    }
 }

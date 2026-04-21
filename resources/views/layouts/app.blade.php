@@ -54,6 +54,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('contracts') }}">Договора</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('payment') }}">Оплата</a>
+                    </li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->

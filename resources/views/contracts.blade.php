@@ -37,7 +37,7 @@
                                     <select id="filterCustomer" name="filterCustomer" class="form-select">
                                         <option value="" selected>Пусто</option>
                                         @foreach($organizations as $organization)
-                                            <option value="{{$organization->id_organization}}" selected>{{$organization->id_organization}} - {{$organization->name}}</option>
+                                            <option value="{{$organization->id_organization}}">{{$organization->id_organization}} - {{$organization->name}}</option>
                                         @endforeach
                                     </select>
                                     <script>document.getElementById('filterCustomer').value='{{$filterCustomer}}'</script>
@@ -141,7 +141,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="fk_id_type_of_contract" class="form-label">Выберете тип договора</label>
-                                        <select id="fk_id_type_of_contract" name="fk_id_type_of_contract" class="form-select">
+                                        <select id="fk_id_type_of_contract" name="fk_id_type_of_contract" class="form-select" required>
                                             <option value="" selected>Пусто</option>
                                             @foreach($types_of_contracts as $type_of_contract)
                                                 <option value="{{$type_of_contract->id_type_of_contract}}">{{$type_of_contract->name}}</option>
